@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>p5.js Cheat Sheet</title>
+	<meta property="og:title" content="Minimum Viable Sharing Meta Tags (meta og:title)"/>
+	<meta name="description" content="Testing MVSMT with meta name=description"/>
+	<meta property="og:description" content="Testing MVSMT with meta og:description"/>
+	<meta property="og:image" content="https://livinbits.github.io/p5js-cheat-sheet/image-it.png"/>
+	<meta property="og:url" content="https://livinbits.github.io/p5js-cheat-sheet/it.html"/>
+	<meta name="twitter:card" content="summary_large_image"/>
+
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="style.css" media="all">
+	<link rel="stylesheet" href="prism.css">
+</head>
+
+<body>
+
+	<!-- Include the menu, there's likely a more elegent way to do this -->
+	<script src="menu.js"></script>
+
+	<article id="cheat-sheet">
+
+		<div class="column">
+
+			<header>
+				<h1 id="title">p5.js</h1>
+				<p id="subtitle">un bigino <br> per artisti visivi</p>
+			</header>
+
+			<section>
+				<h1>struttura base</h1>
+				<pre><code class="language-javaScript">
+// eseguito una volta prima del setup
+function preload(){
+  // img = loadImage(percorsoFileBitmap);
+  // snd = loadSound(percorsoFileAudio);
+}
+
+// eseguito una volta all'avvio o dopo il preload
+function setup(){
+  // createCanvas(larghezza, altezza);
+  // inizializzazioni
+}
+
+// eseguito continuamente dopo il setup
+function draw(){
+  // ciclo di rendering
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h1>variabili di sistema</h1>
+				<pre><code class="language-javaScript highlight-p5var">
+windowWidth / windowHeight
+// larghezza / altezza dell'interno della finestra
+width / height
+// larghezza / altezza del canvas
+frameCount
+// numero di fotogrammi dall'avvio dello sketch
+mouseX / mouseY
+// posizione orizzontale / verticale del mouse
+key
+// ultimo carattere digitato sulla tastiera
+keyCode
+// ultimo tasto premuto: BACKSPACE, DELETE, ENTER
+// TAB, ESCAPE, SHIFT, CONTROL, OPTION, ALT,
+// UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW
+				</code></pre>
+			</section>
+
+			<section>
+				<h1>eventi di sistema</h1>
+				<pre><code class="language-javaScript">
+// tasto premuto
+function keyPressed(){
+}
+// mouse spostato senza pulsante premuto
+function mouseMoved(){
+}
+// tasto del mouse premuto
+function mousePressed(){
+}
+// tasto del mouse premuto e rilasciato
+function mouseClicked(){
+}
+// dimensioni della finestra modificate
+function windowResized(){
+  // resizeCanvas(windowWidth, windowHeight);
+}
+				</code></pre>
+			</section>
+
+	</div>
+	<!-- End First Col -->
+
+	<div class="column">
+
+		<section>
+			<h1>spazio 2D</h1>
+			<ul class="columns-2-3">
+				<li class="canvas-container">
+					<h2>coordinate</h2>
+					<div id="grid-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>angoli in radianti</h2>
+					<div id="angles-canvas"></div>
+				</li>
+			</ul>
+			<pre><code class="language-javaScript">
+push(); // salva stili e trasformazioni correnti
+  translate(x, y);  // traslazione
+  scale(x, y); // scalatura
+  rotate(angolo);  // rotazione
+  // istruzioni di disegno
+pop(); // ripristina stili e trasformazioni
+
+angleMode(DEGREES);  // deafult: RADIANS
+			</code></pre>
+		</section>
+
+
+		<section>
+			<h1>colore</h1>
+			<pre><code class="language-javaScript">
+background(colore);  // colora lo sfondo
+
+fill(colore);  // imposta colore di riempimento
+noFill();  // disabilita il riempimento
+stroke(colore);  // imposta colore dei contorni
+noStroke();  // disabilita il disegno dei contorni
+
+fill('red');  // imposta colore con nome inglese
+fill('#222222');  // valore esadecimale
+fill(grigio);
+fill(grigio, alfa);
+fill(rosso, verde, blu);
+fill(rosso, verde, blu, alfa);
+
+colorMode(HSL, maxH, maxS, maxL, maxA);
+fill(tono, saturazione, chiarezza, alfa);
+
+colorMode(HSB, maxH, maxS, maxB, maxA);
+fill(tono, saturazione, brillantezza, alfa);
+
+colorMode(RGB, 255); // modalità cromatica di default
+
+variabileColore = color(120, 50, 90);
+			</code></pre>
+			<div class="canvas-container">
+				<h2>tono (H), chiarezza (L), brillantezza (B)</h2>
+				<div id="colormode-canvas"></div>
+			</div>
+		</section>
+
+	</div>
+	<!-- End Second Col -->
+
+	<div class="column">
+
+		<section>
+			<h1>forme</h1>
+			<pre><code class="language-javaScript">
+ellipseMode(CORNER);  // default: CENTER
+rectMode(CENTER); // default: CORNER
+
+strokeWeight(spessore);
+// imposta lo spessore dei contorni in pixel
+
+line(x1, y1, x2, y2); // linea
+
+ellipse(x, y, larghezza, altezza); // ellisse
+
+rect(x, y, larghezza, altezza); // rettangolo
+
+arc(x, y, larghezza, altezza, inizio, fine); // arco
+
+beginShape(); // inizia definizione vertici poligono
+  vertex(x1, y1);
+  vertex(x2, y2);
+  vertex(x3, y3);
+  // altri vertici
+endShape(CLOSE); // termina definizione (e disegna)
+			</code></pre>
+		</section>
+
+
+		<section>
+			<h1>tipografia</h1>
+			<pre><code class="language-javaScript">
+font = loadFont(percorsoFile);
+// carica font in formato TTF o OTF
+
+textFont(font, dimensione);
+// imposta il font e la dimensione dei caratteri
+
+textSize(dimensione);
+// imposta solo la dimensione dei caratteri
+
+textAlign(orizzontale, verticale);
+// orizzontale: LEFT (default), CENTER or RIGHT
+// verticale: TOP, BOTTOM, CENTER or BASELINE (default)
+
+text("testo", x, y);
+text("testo multilinea", x, y, larghezza, altezza);
+			</code></pre>
+		</section>
+
+		<section>
+			<ul class="three-columns">
+				<li class="canvas-container">
+					<h2>line()</h2>
+					<div id="line-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>ellipse()</h2>
+					<div id="ellipse-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>rect()</h2>
+					<div id="rect-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>arc()</h2>
+					<div id="arc-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>vertex()</h2>
+					<div id="vertex-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>text()</h2>
+					<div id="text-canvas"></div>
+				</li>
+			</ul>
+		</section>
+
+	</div>
+	<!-- End Third Col -->
+
+	<div class="column">
+
+		<section>
+			<h1>feedback non grafico</h1>
+			<pre><code class="language-javaScript">
+print("testo: " + variabile);
+// visualizza testo e dati nella console
+
+// doppia barra per commentare il codice
+			</code></pre>
+		</section>
+
+		<section>
+			<h1>matematica</h1>
+			<pre><code class="language-javaScript">
++ - / *  // operatori matematici di base
+
+random(minimo, massimo); // numero casuale
+noise(x, y, z); // valore Perlin noise fra 0 e 1
+
+round(valore); // arrotonda a intero più vicino
+
+map(valore, attualeA, attualeB, nuovoA, nuovoB);
+// mappa un valore da un intervallo (A,B) a un altro
+
+dist(x1, y1, x2, y2);
+// calcola distanza fra due punti
+			</code></pre>
+		</section>
+
+		<section>
+			<h1>logica se/allora</h1>
+			<div class="logic">
+				<pre><code class="language-javaScript">
+if (test) {
+  istruzioni
+}
+
+==  // uguale a
+!=  // diverso da
+>   // maggiore di
+<   // minore di
+>=  // maggiore o uguale
+<=  // minore o uguale
+
+&&  // entrambi operandi true
+||  // un operando true
+!   // inverte operando
+				</code></pre>
+				<div id="ifelse-canvas"></div>
+			</div>
+		</section>
+
+		<section>
+			<h1>logica cicli for</h1>
+			<div class="logic">
+				<pre><code class="language-javaScript">
+for (avvio; test; modifica) {
+  istruzioni
+}
+
+// esempio
+for (var i = 0; i < 10; i++) {
+  print(i);
+}
+				</code></pre>
+				<div id="forloop-canvas"></div>
+			</div>
+		</section>
+
+		<footer>
+			Redatto da Antonio Belluscio <a href="https://codesthesia.net">codesthesia.net</a> CC-BY-SA-NC-4.0
+			<br>
+			Basato sul <a href="https://bmoren.github.io/p5js-cheat-sheet/">p5js cheat sheet</a> di Ben Moren
+		</footer>
+
+	</div>
+
+	</article>
+
+	<script type="text/javascript">
+		// Terms to translate for diagrams
+		var terms = {
+			string: "testo",
+			width: "larghezza",
+			height: "altezza",
+			start: "inizio",
+			stop: "fine",
+			true: "vero",
+			false: "falso",
+			init: "avvio",
+			continue_program: "continua sketch",
+			test: "test",
+			statements: "istruzioni",
+			update: "modifica"
+		};
+	</script>
+
+	<script src="prism.js"></script>
+	<script src="p5.min.js"></script>
+	<script src="diagram.js"></script>
+</body>
+
+</html>

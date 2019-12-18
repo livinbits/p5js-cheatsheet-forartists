@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>p5.js Cheat Sheet</title>
+	<meta property="og:title" content="Minimum Viable Sharing Meta Tags (meta og:title)"/>
+	<meta name="description" content="Testing MVSMT with meta name=description"/>
+	<meta property="og:description" content="Testing MVSMT with meta og:description"/>
+	<meta property="og:image" content="https://livinbits.github.io/p5js-cheat-sheet/image.png"/>
+	<meta property="og:url" content="https://livinbits.github.io/p5js-cheat-sheet/"/>
+	<meta name="twitter:card" content="summary_large_image"/>
+
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="style.css" media="all">
+	<link rel="stylesheet" href="prism.css">
+</head>
+
+<body>
+
+	<!-- Include the menu, there's likely a more elegent way to do this -->
+	<script src="menu.js"></script>
+
+	<article id="cheat-sheet">
+
+
+		<div class="column">
+
+			<header>
+				<h1 id="title">p5.js</h1>
+				<p id="subtitle">a cheat sheet <br> for visual artists</p>
+			</header>
+
+			<section>
+				<h1>program structure</h1>
+				<pre><code class="language-javaScript">
+// runs once before setup
+function preload(){
+  // img = loadImage(imageFilePath);
+  // snd = loadSound(soundFilePath);
+}
+
+// runs once when program starts or after preload
+function setup(){
+  // createCanvas(width, height);
+  // initializations
+}
+
+// runs continuously after setup
+function draw(){
+  // rendering loop
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h1>system variables</h1>
+				<pre><code class="language-javaScript highlight-p5var">
+windowWidth / windowHeight
+// width / height of inner window
+width / height
+// width / height of canvas
+frameCount
+// number of frames since program started
+mouseX / mouseY
+// horizontal / vertical mouse position
+key
+// most recent character typed
+keyCode
+// most recent key pressed: BACKSPACE, DELETE,
+// ENTER, TAB, ESCAPE, SHIFT, CONTROL, OPTION, ALT,
+// UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW
+				</code></pre>
+			</section>
+
+			<section>
+				<h1>system events</h1>
+				<pre><code class="language-javaScript">
+// a key is pressed
+function keyPressed(){
+}
+// mouse moves and a button is not pressed
+function mouseMoved(){
+}
+// a mouse button is pressed
+function mousePressed(){
+}
+// mouse button pressed and then released
+function mouseClicked(){
+}
+// window changes size
+function windowResized(){
+  // resizeCanvas(windowWidth, windowHeight);
+}
+				</code></pre>
+			</section>
+
+
+
+	</div>
+	<!-- End First Col -->
+
+
+	<div class="column">
+
+
+		<section>
+			<h1>2d space</h1>
+			<ul class="columns-2-3">
+				<li class="canvas-container">
+					<h2>grid system</h2>
+					<div id="grid-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>angles in radians</h2>
+					<div id="angles-canvas"></div>
+				</li>
+			</ul>
+			<pre><code class="language-javaScript">
+push(); // save current styles and transformations
+  translate(xDisplace, yDisplace);
+  scale(xFactor, yFactor);
+  rotate(angle);
+  // drawing instructions
+pop(); // restore styles and transformations
+
+angleMode(DEGREES);  //deafult: RADIANS
+			</code></pre>
+		</section>
+
+
+		<section>
+			<h1>color</h1>
+			<pre><code class="language-javaScript">
+background(color);  // fill the background
+
+fill(color);  // set the fill color
+noFill();  // disables fill
+stroke(color);  // set the stroke color
+noStroke();  // disables stroke
+
+fill('red');  // color string
+fill('#222222');  // 6-digit hex fill
+fill(gray);
+fill(gray, alpha);
+fill(red, green, blue);
+fill(red, green, blue, alpha);
+
+colorMode(HSL, maxH, maxS, maxL, maxA);
+fill(hue, saturation, lightness, alpha);
+
+colorMode(HSB, maxH, maxS, maxB, maxA);
+fill(hue, saturation, brightness, alpha);
+
+colorMode(RGB, 255);  // restore default color mode
+
+colorVariable = color(120, 50, 90);
+			</code></pre>
+			<div class="canvas-container">
+				<h2>hue, lightness, brightness</h2>
+				<div id="colormode-canvas"></div>
+			</div>
+		</section>
+
+
+	</div>
+	<!-- End Second Col -->
+
+
+	<div class="column">
+
+
+
+		<section>
+			<h1>shapes</h1>
+			<pre><code class="language-javaScript">
+ellipseMode(CORNER);  // default: CENTER
+rectMode(CENTER); // default: CORNER
+
+strokeWeight(weight);
+// set the stroke’s width in pixels
+
+line(x1, y1, x2, y2);
+
+ellipse(x, y, width, height);
+
+rect(x, y, width, height);
+
+arc(x, y, width, height, start, stop);
+
+beginShape();
+  vertex(x1, y1);
+  vertex(x2, y2);
+  vertex(x3, y3);
+  //add more vertex
+endShape(CLOSE);
+			</code></pre>
+		</section>
+
+
+		<section>
+			<h1>typography</h1>
+			<pre><code class="language-javaScript">
+font = loadFont(filePath);
+// loads TTF or OTF font
+
+textFont(font, size);
+// set the font and size
+
+textSize(size);
+// set only size
+
+textAlign(horizontal, vertical);
+// horizontal: LEFT (default), CENTER or RIGHT
+// vertical: TOP, BOTTOM, CENTER or BASELINE (default)
+
+text("string", x, y);
+text("multiline string", x, y, boxwidth, boxheight);
+			</code></pre>
+		</section>
+
+
+		<section>
+			<ul class="three-columns">
+				<li class="canvas-container">
+					<h2>line()</h2>
+					<div id="line-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>ellipse()</h2>
+					<div id="ellipse-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>rect()</h2>
+					<div id="rect-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>arc()</h2>
+					<div id="arc-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>vertex()</h2>
+					<div id="vertex-canvas"></div>
+				</li>
+				<li class="canvas-container">
+					<h2>text()</h2>
+					<div id="text-canvas"></div>
+				</li>
+			</ul>
+		</section>
+
+	</div>
+	<!-- End Third Col -->
+
+
+	<div class="column">
+
+
+		<section>
+			<h1>non-visual feedback</h1>
+			<pre><code class="language-javaScript">
+print("string: " + variable);
+// report data to the output console
+
+// double slash to comment code (program skips it)
+			</code></pre>
+		</section>
+
+
+		<section>
+			<h1>math</h1>
+			<pre><code class="language-javaScript">
++ - / *  //basic math operators
+
+random(low, high); // ranged random number
+noise(x, y, z); //Perlin noise between 0 and 1
+
+round(value); //nearest integer
+
+map(value, in1, in2, out1, out2);
+//map a value from input range to output range
+
+dist(x1, y1, x2, y2);
+//calculate distance between 2 points
+			</code></pre>
+		</section>
+
+
+		<section>
+			<h1>if/then logic</h1>
+			<div class="logic">
+				<pre><code class="language-javaScript">
+if ( test ) {
+  statements
+}
+
+==  //equal to
+!=  //not equal
+>   //greater than
+<   //less than
+>=  //greater than or equal
+<=  //less than or equal
+
+&&  //both operands true
+||  //either operand true
+!   //reverses operand
+				</code></pre>
+				<div id="ifelse-canvas"></div>
+			</div>
+		</section>
+
+		<section>
+			<h1>for loop logic</h1>
+			<div class="logic">
+				<pre><code class="language-javaScript">
+for ( init; test; update ) {
+  statements
+}
+
+//example
+for (var i = 0; i < 10; i++) {
+  print(i);
+}
+				</code></pre>
+				<div id="forloop-canvas"></div>
+			</div>
+		</section>
+
+		<footer>
+			Compiled by Antonio Belluscio <a href="https://codesthesia.net">codesthesia.net</a> CC-BY-SA-NC-4.0
+			<br>
+			Based on Ben Moren's <a href="https://bmoren.github.io/p5js-cheat-sheet/">p5js cheat sheet</a>
+		</footer>
+
+	</div>
+
+	</article>
+
+	<script type="text/javascript">
+		// Terms to translate for diagrams
+		var terms = {
+			string: "string",
+			width: "width",
+			height: "height",
+			start: "start",
+			stop: "stop",
+			true: "true",
+			false: "false",
+			init: "init",
+			continue_program: "continue program",
+			test: "test",
+			statements: "statements",
+			update: "update"
+		};
+	</script>
+
+	<script src="prism.js"></script>
+	<script src="p5.min.js"></script>
+	<script src="diagram.js"></script>
+</body>
+
+</html>

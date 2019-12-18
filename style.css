@@ -1,0 +1,283 @@
+/* // CHANGE ALL THE FONTS TO USE EMS */
+
+
+@font-face{
+	font-family: "Fira Code";
+	font-weight: normal;
+	src: url("fonts/FiraCode-Regular.otf") format("truetype");
+}
+
+@font-face{
+	font-family: "Fira Code";
+/*	font-weight: light; */
+	font-weight: 300;
+	src: url("fonts/FiraCode-Light.otf") format("truetype");
+}
+/*
+@font-face{
+	font-family: "Fira Code";
+	font-weight: medium;
+	src: url("fonts/FiraCode-Medium.otf") format("truetype");
+}
+
+@font-face{
+	font-family: "Fira Code";
+	font-weight: bold;
+	src: url("fonts/FiraCode-Bold.otf") format("truetype");
+}
+*/
+*{
+	color-adjust: exact;
+	-webkit-print-color-adjust: exact;
+	box-sizing: inherit;
+}
+
+body,html{
+	padding: 2vw 1vw 0vw 1vw;
+	margin: 0;
+	font-family: "Fira Code", monospace;
+/*	font-size: 0.85vw; */
+	font-size: 0.8vw;
+	box-sizing: border-box;
+}
+
+a{
+	color:#ed225d;
+}
+a:hover{
+	color: #545454;
+}
+
+h1, h2{
+	color: #ed225d;
+	margin:0.5vh;
+	white-space: nowrap;
+}
+h1{
+	font-size: 1.2em;
+}
+h2{
+	font-size: 1em;
+	font-weight: normal;
+}
+
+footer{
+	font-size: 0.75em;
+	font-weight: 300;
+	text-align: right;
+	margin-top:0.5vh;
+}
+
+#subtitle{
+	text-align: center;
+}
+
+header#page-header{
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index:9999;
+}
+
+header#page-header #language-selection{
+	position:absolute;
+	right:0;
+	display: flex;
+	list-style: none;
+	padding: 1vh;
+	background-color:#fafafa;
+	justify-content: space-around;
+/*	width:40vw; */
+	min-width:33vw;
+}
+header#page-header #language-selection li#print,
+header#page-header #language-selection li a {
+	padding: 0 0.75em;
+}
+header#page-header #language-selection li.sep {
+	padding: 0 0.5em;
+}
+header#page-header #language-selection li#print {
+	color:#ed225d;
+}
+#cheat-sheet{
+	display: grid;
+	align-items: start;
+	grid-template-columns: repeat(4,1fr);
+	grid-gap: 2vw;
+}
+
+
+#cheat-sheet  pre{
+	background: #fafafa;
+	white-space: pre-wrap;
+	overflow: inherit;
+	padding: 0 1em; /*ab*/
+	line-height: 1.16; /*ab*/
+}
+
+
+#cheat-sheet #title{
+	font-size: 2.25em;
+	width:50%;
+}
+
+#cheat-sheet header{
+	display:flex;
+	justify-content: center;
+/*	align-items: center; */
+}
+
+#cheat-sheet #subtitle{
+/*	margin: 0.25em 0 0.5em; */ /*ab*/
+	margin-top: 0.5vh;
+	padding: 0.5vw;
+	background: #ed225d;
+	color: #FFF;
+	width:50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#cheat-sheet ul{
+	padding: 0;
+	list-style: none;
+	/* background-color:#fafafa; */
+
+}
+
+#cheat-sheet .canvas-container{
+	display: inline-block;
+
+}
+
+div.column section ul{
+	display:grid;
+/*	grid-template-columns: repeat(3,1fr); */
+/*	grid-template-rows: repeat(2,1fr); */
+	align-content:center;
+	justify-content: center;
+}
+div.column section ul.two-columns {
+	grid-template-columns: repeat(2,1fr);
+}
+div.column section ul.columns-1-2 {
+	grid-template-columns: 33% 67%;
+}
+div.column section ul.columns-2-3 {
+	grid-template-columns: 40% 60%;
+}
+div.column section ul.columns-3-2 {
+	grid-template-columns: 60% 40%;
+}
+div.column section ul.three-columns {
+	grid-template-columns: repeat(3,1fr);
+}
+
+
+.canvas-container div{
+	display: flex;
+	justify-content: center;
+}
+
+.canvas-container div canvas {
+	width:87.5% !important;
+	height:87.5% !important;
+}
+
+.logic{
+	display:grid;
+	grid-template-columns: 3fr 2fr;
+	/* display: flex; */
+	align-items: center;
+	background-color:#fafafa;
+	margin-left: -0.5em;
+	margin-bottom: 1em;
+}
+.logic pre{
+	margin-left: 0 !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	padding-right: 0 !important;
+}
+
+
+#ifelse-canvas .p5Canvas,
+#forloop-canvas .p5Canvas {
+	width:100% !important;
+/*	height:100% !important; */
+	height:auto !important;
+}
+
+/* There might need to be another break size to 2 col or something? */
+
+/*  MOBILE – SMALL-TABLET & PHONE */
+ @media screen and (max-width: 768px){
+
+	 body,html{
+		font-size: 3vw;
+		margin-top: 1.5vh;
+	 }
+
+	 #cheat-sheet{
+	 	grid-template-columns: 1fr;
+	 }
+
+	 header#page-header #language-selection{
+	 	position:relative;
+	 	left:0;
+	 	width:100%;
+		font-size: 0.75em;
+	 }
+
+ }
+
+/* PRINT – LANDSCAPE ORIENTATION IS FAVORED! */
+ @media print{
+ 	@page{
+ 		size: landscape;
+ 	}
+
+	body,html{
+		padding: 0px;
+/*		font-size: 1.25vw; */
+		font-size: 1.25vw;
+	}
+
+/* special for printing the JA since the characters take more vertical space */
+	#ja{
+		font-size: 1.1vw;
+	}
+
+ 	header#page-header{
+		display:none;
+	}
+/*
+	.logic{
+		display:grid;
+		grid-template-columns: 1fr;
+	}
+
+	#ifelse-canvas,
+	#forloop-canvas{
+		display: flex;
+		justify-content: center;
+	}
+
+	#ifelse-canvas .p5Canvas,
+	#forloop-canvas .p5Canvas{
+		width:50% !important;
+	 }
+*/
+	footer{
+	 font-size: 0.5em;
+	}
+
+}
+
+
+ /* @media print and (orientation: portrait){
+
+ } */
