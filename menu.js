@@ -7,7 +7,7 @@ document.write(`
     <li class="sep">|</li>
     <li><a href="https://p5js.org/reference/">p5js Reference</a></li>
     <li class="sep">|</li>
-    <li id="print">print</li>
+    <li id="print">Print</li>
   </ul>
 </header>
 
@@ -25,7 +25,7 @@ document.getElementById('print').addEventListener('click', function(){
 
   console.log(browser)
   if(browser != "Chrome"){
-    alert('The p5.js cheatsheet prints with best results from Chrome! \n You might consider printing from the PDF available on github for better results! \n https://github.com/bmoren/p5js-cheat-sheet')
+    alert('The p5.js cheatsheet prints with best results from Chrome! \n You might consider printing from the PDF available on github for better results! \n https://github.com/livinbits/p5js-cheatsheet-forartists')
   }
   print();
 })
