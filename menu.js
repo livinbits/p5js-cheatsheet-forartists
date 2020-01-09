@@ -4,6 +4,7 @@ document.write(`
   <ul id="language-selection">
     <li><a href="index.html">English</a></li>
     <li><a href="it.html">Italiano</a></li>
+    <li><a href="zh.html">中文</a></li>
     <li class="sep">|</li>
     <li><a href="https://p5js.org/reference/">p5js Reference</a></li>
     <li class="sep">|</li>

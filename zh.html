@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>给艺术家的p5.js入门神器</title>
+	<meta property="og:title" content="p5.js Cheat Sheet for Artists" />
+	<meta name="description"
+		content="A p5.js cheat sheet with the basic notions useful for visual artists and graphic designers approaching creative coding." />
+	<meta property="og:description"
+		content="A p5.js cheat sheet with the basic notions useful for visual artists and graphic designers approaching creative coding." />
+	<meta property="og:image"
+		content="https://livinbits.github.io/p5js-cheatsheet-forartists/p5js-cheatsheet-forartists.png" />
+	<meta property="og:url" content="https://livinbits.github.io/p5js-cheatsheet-forartists/" />
+	<meta name="twitter:card" content="summary_large_image" />
+
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="style.css" media="all">
+	<link rel="stylesheet" href="prism.css">
+</head>
+
+<body>
+
+	<!-- Include the menu, there's likely a more elegent way to do this -->
+	<script src="menu.js"></script>
+
+	<article id="cheat-sheet">
+
+
+		<div class="column">
+
+			<header>
+				<h1 id="title">p5.js</h1>
+				<p id="subtitle">给艺术家的<b>入门神器</b></p>
+			</header>
+
+			<section>
+				<h1>程序基本结构</h1>
+				<pre><code class="language-javaScript">
+// 初始化，只在程序开始运行的时候执行一次
+function preload(){
+  // img = loadImage(imageFilePath);
+  // snd = loadSound(soundFilePath);
+}
+
+// 初始化，只在程序开始运行的时候执行一次
+function setup(){
+  // createCanvas(width, height);
+  //width代表画布宽度，height代表画布高度
+}
+
+//在初始化之后一直循环执行
+function draw(){
+	//渲染循环
+}
+				</code></pre>
+			</section>
+
+			<section>
+				<h1>系统变量</h1>
+				<pre><code class="language-javaScript highlight-p5var">
+windowWidth / windowHeight
+//窗口的高度和宽度
+width / height
+//当前画布的高度和宽度
+frameCount
+//程序开始运行到现在经过的帧数
+mouseX / mouseY
+//当前鼠标的X坐标和Y坐标
+key
+//上一个按下的键盘键值
+keyCode
+// 按下的特殊按键，如: BACKSPACE, DELETE,
+// ENTER, TAB, ESCAPE, SHIFT, CONTROL, OPTION, ALT,
+// UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW
+				</code></pre>
+			</section>
+
+			<section>
+				<h1>系统事件</h1>
+				<pre><code class="language-javaScript">
+// 按键按下
+function keyPressed(){
+}
+// 鼠标移动
+function mouseMoved(){
+}
+// 鼠标按下
+function mousePressed(){
+}
+// 鼠标点击
+function mouseClicked(){
+}
+// 窗口大小改变
+function windowResized(){
+  // resizeCanvas(windowWidth, windowHeight);
+}
+				</code></pre>
+			</section>
+
+
+
+		</div>
+		<!-- End First Col -->
+
+
+		<div class="column">
+
+
+			<section>
+				<h1>2d 空间</h1>
+				<ul class="columns-2-3">
+					<li class="canvas-container">
+						<h2>网格系统</h2>
+						<div id="grid-canvas"></div>
+					</li>
+					<li class="canvas-container">
+						<h2>弧度制</h2>
+						<div id="angles-canvas"></div>
+					</li>
+				</ul>
+				<pre><code class="language-javaScript">
+push(); // 保存当前的样式和画布变换
+  translate(xDisplace, yDisplace);
+  scale(xFactor, yFactor);
+  rotate(angle);
+pop(); //  恢复保存的样式和画布变换
+
+angleMode(DEGREES);  //默认：弧度制
+			</code></pre>
+			</section>
+
+
+			<section>
+				<h1>颜色</h1>
+				<pre><code class="language-javaScript">
+background(color);  // 填充背景
+
+fill(color);  // 设置填充色
+noFill();  // 取消填充
+stroke(color);  // 设置描边颜色
+noStroke();  // 取消描边
+
+fill('red');  // 颜色名称
+fill('#222222');  // 6位十六进制数
+fill(gray);
+fill(gray, alpha);
+fill(red, green, blue);
+fill(red, green, blue, alpha);
+
+colorMode(HSL, maxH, maxS, maxL, maxA);
+fill(hue, saturation, lightness, alpha);
+
+colorMode(HSB, maxH, maxS, maxB, maxA);
+fill(hue, saturation, brightness, alpha);
+
+colorMode(RGB, 255);  // 恢复默认颜色模式
+
+colorVariable = color(120, 50, 90);
+			</code></pre>
+				<div class="canvas-container">
+					<h2>色相, 饱和度, 亮度</h2>
+					<div id="colormode-canvas"></div>
+				</div>
+			</section>
+
+
+		</div>
+		<!-- End Second Col -->
+
+
+		<div class="column">
+
+
+
+			<section>
+				<h1>基础形状</h1>
+				<pre><code class="language-javaScript">
+ellipseMode(CORNER);  // 默认: 中心
+rectMode(CENTER); // 默认: 左上角
+
+strokeWeight(weight);
+// 设置描边宽度
+
+line(x1, y1, x2, y2);
+
+ellipse(x, y, width, height);
+
+rect(x, y, width, height);
+
+arc(x, y, width, height, start, stop);
+
+beginShape();
+  vertex(x1, y1);
+  vertex(x2, y2);
+  vertex(x3, y3);
+  //添加更多的顶点
+endShape(CLOSE);
+			</code></pre>
+			</section>
+
+
+			<section>
+				<h1>文本</h1>
+				<pre><code class="language-javaScript">
+font = loadFont(filePath);
+// 加载TTF或者OTF格式的字体
+
+textFont(font, size);
+// 设置字体字号
+
+textSize(size);
+// 设置字号
+
+textAlign(horizontal, vertical);
+// 水平: LEFT (默认), CENTER or RIGHT
+// 垂直: TOP, BOTTOM, CENTER or BASELINE (默认)
+
+text("string", x, y);
+text("multiline string", x, y, boxwidth, boxheight);
+			</code></pre>
+			</section>
+
+
+			<section>
+				<ul class="three-columns">
+					<li class="canvas-container">
+						<h2>line() 直线</h2>
+						<div id="line-canvas"></div>
+					</li>
+					<li class="canvas-container">
+						<h2>ellipse() 圆</h2>
+						<div id="ellipse-canvas"></div>
+					</li>
+					<li class="canvas-container">
+						<h2>rect() 矩形</h2>
+						<div id="rect-canvas"></div>
+					</li>
+					<li class="canvas-container">
+						<h2>arc() 扇形</h2>
+						<div id="arc-canvas"></div>
+					</li>
+					<li class="canvas-container">
+						<h2>vertex() 顶点</h2>
+						<div id="vertex-canvas"></div>
+					</li>
+					<li class="canvas-container">
+						<h2>text() 文本</h2>
+						<div id="text-canvas"></div>
+					</li>
+				</ul>
+			</section>
+
+		</div>
+		<!-- End Third Col -->
+
+
+		<div class="column">
+
+
+			<section>
+				<h1>调试输出</h1>
+				<pre><code class="language-javaScript">
+print("string: " + variable);
+// 在调试控制台上输出
+
+// 双斜杠表示注释内容
+			</code></pre>
+			</section>
+
+
+			<section>
+				<h1>数学</h1>
+				<pre><code class="language-javaScript">
++ - / *  //基本运算符
+
+random(low, high); //生成随机数
+noise(x, y, z); //生成0到1之间的柏林噪音（平滑连续随机数）
+
+round(value); //取最接近的整数
+
+map(value, in1, in2, out1, out2);
+//把一个值从一个范围内映射到另一个范围。
+
+dist(x1, y1, x2, y2);
+//计算两点之间的距离
+			</code></pre>
+			</section>
+
+
+			<section>
+				<h1>if/then 逻辑</h1>
+				<div class="logic">
+					<pre><code class="language-javaScript">if(条件){
+	语句
+}
+
+===  //等于
+!=  //不等于
+>   //大于
+<   //小于
+>=  //大于等于
+<=  //小于等于
+
+&&  //逻辑与
+||  //逻辑或
+！   //逻辑非
+</code></pre>
+					<div id="ifelse-canvas"></div>
+				</div>
+			</section>
+
+			<section>
+				<h1>for 循环</h1>
+				<div class="logic">
+					<pre><code class="language-javaScript">
+for ( init; test; update ) {
+  statements
+}
+
+//示例
+for (var i = 0; i < 10; i++) {
+  print(i);
+}
+				</code></pre>
+					<div id="forloop-canvas"></div>
+				</div>
+			</section>
+
+			<footer>
+				Compiled by Antonio Belluscio <a href="https://codesthesia.net">codesthesia.net</a> CC-BY-SA-NC-4.0
+				<br>
+				Based on Ben Moren's <a href="https://bmoren.github.io/p5js-cheat-sheet/">p5js cheat sheet</a><br>
+				Chinese translation by <a href="https://github.com/Drafffffff">Drafff</a>
+			</footer>
+
+		</div>
+
+	</article>
+
+	<script type="text/javascript">
+		// Terms to translate for diagrams
+		var terms = {
+			string: "string",
+			width: "width",
+			height: "height",
+			start: "start",
+			stop: "stop",
+			true: "true",
+			false: "false",
+			init: "init",
+			continue_program: "continue program",
+			test: "test",
+			statements: "statements",
+			update: "update"
+		};
+	</script>
+
+	<script src="prism.js"></script>
+	<script src="p5.min.js"></script>
+	<script src="diagram.js"></script>
+</body>
+
+</html>
